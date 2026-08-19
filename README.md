@@ -85,19 +85,6 @@ Lemma 3.4(d), that flipping an even number of pure actions preserves equilibrium
 while an odd number does not, over 257 flips for `n = 3,4,5`. That last one is
 what justifies the `2^(l-1)` factor, so it carries weight.
 
-## Known bug, left in
-
-`partition_equilibria` calls `print(game.A)` instead of `print(self.A)` on line
-286, so it depends on a module-level variable named `game` that exists only
-because the usage block at the bottom of the file creates one. Import the class
-anywhere else and it raises `NameError`. The dissertation appendix has
-`print(self.A)`, so this is a regression in the working copy.
-
-It is left unfixed so the source file stays exactly as submitted. Three tests are
-marked `xfail(strict=True, raises=NameError)` to pin it, which means they will
-start failing the moment it is fixed, and that is the intent. The fix is one
-character.
-
 ## Scope
 
 Enumeration walks all `n!` permutations, so runtime is factorial. `n <= 8` runs
